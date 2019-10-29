@@ -2,6 +2,7 @@ package com.eatrho.fundtool.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.eatrho.fundtool.Constant;
 import com.eatrho.fundtool.utility.HttpUtil;
 import com.eatrho.fundtool.utility.NumberUtil;
@@ -135,6 +136,16 @@ public class FundService {
             foundMap.put(gpdmlist.get(i), text);
         }
         return foundMap;
+    }
+
+    public static void estimateByCode(String code) {
+        String url = Constant.estimateURL + code + ".js";
+        String result = HttpUtil.get(url);
+        if (StringUtil.isNotEmpty(result)) {
+            result = result.replace("jsonpgz(", "").replace(");", "");
+            JSONObject jo = JSON.parseObject(result);
+            System.out.println(jo.getString("name") + ":" + jo.getString("gztime") + " 估值：" + jo.getString("gszzl") + "%");
+        }
     }
 
 }

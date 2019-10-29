@@ -23,4 +23,9 @@ public class Constant {
      */
     public static final String url = "http://fund.eastmoney.com/js/fundcode_search.js";
 
+    /**
+     * 基金估值查询URL
+     */
+    public static final String estimateURL = "http://fundgz.1234567.com.cn/js/";
+
 }
